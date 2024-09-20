@@ -1,13 +1,13 @@
 import { createContext, SetStateAction } from 'react';
-import type { Universe } from '../../entities/Universe/types/Universe';
+import type { Movie } from '../../entities/Universe/types/Universe';
 
 type InitialState = {
-  universes: Universe[];
-  setUniverses: (state: SetStateAction<Universe[]>) => void;
+  movies: Movies[];
+  setUniverses: (state: SetStateAction<Movie[]>) => void;
 };
 
 export const initialState: InitialState = {
-  universes: [],
+  movies: [],
   setUniverses: () => {},
 };
 
