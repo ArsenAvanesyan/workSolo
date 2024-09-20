@@ -1,14 +1,17 @@
-import { createContext, SetStateAction } from 'react';
-import type { Movie } from '../../entities/Universe/types/Universe';
+/* eslint-disable import/prefer-default-export */
+import { createContext, Dispatch, SetStateAction } from "react";
 
-type InitialState = {
-  movies: Movies[];
-  setUniverses: (state: SetStateAction<Movie[]>) => void;
+// Определяем тип для состояния контекста
+interface AppContextType {
+  user: { name: string } | null; // Здесь можно уточнить структуру пользователя
+  setUser: Dispatch<SetStateAction<{ name: string } | null>>;
+}
+
+// Начальное состояние
+const initState: AppContextType = {
+  user: null,
+  setUser: () => {},
 };
 
-export const initialState: InitialState = {
-  movies: [],
-  setUniverses: () => {},
-};
-
-export const AppContext = createContext(initialState);
+// Создаем контекст
+export const AppContext = createContext<AppContextType>(initState);

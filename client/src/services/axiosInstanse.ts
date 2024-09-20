@@ -1,8 +1,7 @@
-import type { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
-
-import { User } from '../entities/User/types/user';
+ import type { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 
 import axios from 'axios';
+import { type User } from '../entities/User/types/user';
 
 
 type RetryConfig = {
@@ -26,6 +25,7 @@ const axiosInstance: AxiosInstance = axios.create({
 
 let accessToken = ""
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function setAccessToken(token: string) {
     accessToken = token
 }
@@ -51,12 +51,12 @@ axiosInstance.interceptors.response.use(
       const newAccessToken = response.data.accessToken;
       setAccessToken(newAccessToken)
       prevRequest.sent = true;
-      prevRequest.headers.Authorization =en(token: string) {
-    acce
+      prevRequest.headers.Authorization = `Bearer ${newAccessToken}`;
       return axiosInstance(prevRequest);
     }
     return Promise.reject(error);
   },
 );
+
 
 export default axiosInstance;
