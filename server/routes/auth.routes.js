@@ -10,6 +10,7 @@ router.post("/registration", async (req, res) => {
     console.log(name, email, password, img);
     if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
       res.status(400).json({ message: "Заполните все поля" });
+      return
     }
 
     const hashPassword = await bcrypt.hash(password, 8);

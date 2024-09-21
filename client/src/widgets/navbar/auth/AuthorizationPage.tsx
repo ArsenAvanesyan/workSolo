@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
-import { AppContext } from "../../app/AppContext";
-import { axiosRequest, setAccessToken } from "../../services/axiosInstanse";
-import { NavLink } from "react-router-dom";
+import { AppContext } from "../../../app/provider/AppContext";
+import axiosRequest, { setAccessToken } from "../../../services/axiosInstance";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const AuthorizationPage: React.FC = () => {
+function AuthorizationPage():JSX.Element {
   const { setUser } = useContext(AppContext);
+  const navigate = useNavigate()
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
@@ -19,7 +20,7 @@ const AuthorizationPage: React.FC = () => {
       if (response.status === 200) {
         setUser(response.data.user);
         setAccessToken(response.data.accessToken);
-        return;
+        navigate("/")
       }
       setError("Произошла ошибка");
     } catch (error: any) {

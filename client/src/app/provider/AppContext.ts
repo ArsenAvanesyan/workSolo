@@ -1,17 +1,18 @@
 /* eslint-disable import/prefer-default-export */
 import { createContext, Dispatch, SetStateAction } from "react";
+import { User } from "../../entities/User/types/user";
 
 // Определяем тип для состояния контекста
-interface AppContextType {
-  user: { name: string } | null; // Здесь можно уточнить структуру пользователя
-  setUser: Dispatch<SetStateAction<{ name: string } | null>>;
+type initStateUser = {
+  user: User | undefined
+  setUser: Dispatch<SetStateAction<User|undefined>>
 }
 
 // Начальное состояние
-const initState: AppContextType = {
-  user: null,
+export const initState: initStateUser = {
+  user: undefined,
   setUser: () => {},
 };
 
 // Создаем контекст
-export const AppContext = createContext<AppContextType>(initState);
+export const AppContext = createContext(initState);

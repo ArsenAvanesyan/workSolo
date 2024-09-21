@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AppContext } from '../../app/AppContext';
-import { axiosRequest, setAccessToken } from '../../services/axiosInstance';
+import { AppContext } from '../../app/provider/AppContext';
+import axiosInstance, { axiosRequest, setAccessToken } from '../../services/axiosInstance';
+import { User } from '../../entities/User/types/user';
 
-const Navbar: React.FC = () => {
+function Navbar(): JSX.Element {
+
   const { user, setUser } = useContext(AppContext);
 
   const onHandleLogout = async () => {
     try {
-      const response = await axiosRequest.delete('/auth/logout');
+      const response = await axiosInstance.delete('/auth/logout');
 
       if (response.status === 200) {
         setUser(undefined);
@@ -31,6 +33,9 @@ const Navbar: React.FC = () => {
         )}
         <li>
           <NavLink to="/">Главная</NavLink>
+        </li>
+        <li>
+          <NavLink to="/movie">Фильмы</NavLink>
         </li>
         <li>
           <NavLink to="/registration">Регистрация</NavLink>

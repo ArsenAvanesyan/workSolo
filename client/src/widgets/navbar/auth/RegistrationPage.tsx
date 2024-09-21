@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../app/provider/AppContext';
-import axiosInstance, {  setAccessToken } from '../../../services/axiosInstanse';
+import axiosInstance, {  setAccessToken } from '../../../services/axiosInstance';
 
 
  function RegistrationPage():JSX.Element {
   const { setUser } = useContext(AppContext);
+
+  const navigate = useNavigate()
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -31,7 +34,7 @@ import axiosInstance, {  setAccessToken } from '../../../services/axiosInstanse'
           console.log(response.data);
           setUser(response.data.user);
           setAccessToken(response.data.accessToken);
-          
+          navigate("/")
         }
       } catch ({ response }) {
         console.log(response.data.message);
