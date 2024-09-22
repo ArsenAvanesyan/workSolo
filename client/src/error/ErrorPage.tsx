@@ -10,7 +10,7 @@ const ErrorPage: React.FC = () => {
       <p>Страница не найдена</p>
       <img
         width={"250px"}
-        src="https://avatars.mds.yandex.net/i?id=b585e3a42d982dc35fbb6db4eb10d33481d2aab80f872444-12980679-images-thumbs&n=13"
+        src="https://shatura.gazteploenergetika.ru/images/2023/404.png"
         alt="404 Error"
       />
     </div>

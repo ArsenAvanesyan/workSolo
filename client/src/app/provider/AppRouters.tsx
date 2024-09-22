@@ -1,17 +1,26 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import RegistrationPage from "../../widgets/navbar/auth/RegistrationPage";
 import AuthorizationPage from "../../widgets/navbar/auth/AuthorizationPage";
+import MoviePage from "../../entities/Movie/ui/MoviePage";
+import ErrorPage from "../../error/ErrorPage";
 
-
-function AppRouters(): JSX.Element {
-    return (
-        <Routes>
-            <Route path="/" />
-            <Route path="/registration" element={<RegistrationPage />} />            
-            <Route path="/authorization" element={<AuthorizationPage />} />            
-        </Routes>
-    )
+interface AppRoutersProps {
+  movies: any[]; // Настройте тип в зависимости от вашей структуры фильма
+  setMovies: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-export default AppRouters
+const AppRouters: React.FC<AppRoutersProps> = () => {
+  return (
+    <Routes>
+      <Route path="/"/> {/* Замените на ваш главный компонент */}
+      <Route path="/registration" element={<RegistrationPage />} />
+      <Route path="/authorization" element={<AuthorizationPage />} />
+      <Route path="/movie" element={<MoviePage />} />
+      {/* <Route path="/movie/:movieId" element={<OneMoviePage />} /> */}
+      <Route path="*" element={<ErrorPage />} />
+    </Routes>
+  );
+};
+
+export default AppRouters;

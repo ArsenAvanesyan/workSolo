@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../../app/provider/AppContext';
-import axiosInstance, { axiosRequest, setAccessToken } from '../../services/axiosInstance';
+import axiosInstance, { setAccessToken } from '../../services/axiosInstance';
 import { User } from '../../entities/User/types/user';
 
 function Navbar(): JSX.Element {

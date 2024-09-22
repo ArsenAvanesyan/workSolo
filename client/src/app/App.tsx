@@ -1,64 +1,26 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect, useMemo, useState } from 'react';
 import './App.css';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { AppContext } from "./provider/AppContext";
 import AppRouters from "./provider/AppRouters";
 import Navbar from '../widgets/navbar/Navbar';
 import type { User } from '../entities/User/types/user';
+import { MovieResponse, MovieWithoutIdSecond } from '../entities/Movie/types/movie';
+import { Routes } from 'react-router-dom';
+import axiosInstance from '../services/axiosInstance';
+
 
 function App(): JSX.Element {
+  const [user, setUser] = useState<User | undefined>(undefined);
+  const [movies, setMovies] = useState<MovieWithoutIdSecond[]>([])
+  console.log(movies)
 
-  const [user, setUser] = useState<User | undefined>(undefined)
+  const stateUser = useMemo(() => ({ user, setUser }), [user]);
+  const stateMovie = useMemo(() => ({movies, setMovies}),[movies])
 
-  const stateUser = useMemo(() => ({
-    user, setUser
-  }), [user])
-
-  const [movie, setMovie] = useState([])
-  const [movies, setMovies] = useState([])
-
-  const getOneMovie = async () => {
-    const options = {
-  method: 'GET',
-  url: `https://api.kinopoisk.dev/v1.4/movie/666`,
-  headers: {accept: 'application/json', 'X-API-KEY': '5790B06-XATMD2B-N8C5996-AN2FRBP'}
-   };
-   axios
-   .get("/api/movie")
-    .request(options)
-    .then((response) => {
-      setMovie(response.data.docs)
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-
-  const getAllMovies = async () => {
-
-  const options = {
-    method: 'GET',
-    url: 'https://api.kinopoisk.dev/v1.4/list?page=1&limit=5&updatedAt=',
-    headers: {accept: 'application/json', 'X-API-KEY': '5790B06-XATMD2B-N8C5996-AN2FRBP'}
-  };
-  
-  axios
-    .request(options)
-    .then(function (response) {
-      setMovies(response.data.docs)
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}
-
-  useEffect(()=> {
-    getOneMovie()
-    getAllMovies()
-  }, [])
-
-
+  useEffect(() => {
+    axiosInstance.get('/movie').then((data: AxiosResponse<MovieResponse>) => setMovies(data.data.movie)).catch(console.log)
+  }, []);
 
   return (
     <AppContext.Provider value={stateUser}>
