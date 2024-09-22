@@ -75,18 +75,29 @@ button {
   padding: 0.5rem 1rem;
   cursor: pointer;
   margin: 0 0.5rem;
-  /* Отступы между кнопками */
 }
 
-.moviePage {
+.container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
 }
 
-.movieCard {
-  width: 200px;
+.moviePage {
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.movieCards {
+
+    display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  width: 100vw;
   margin: 1rem;
   transition: transform 0.3s;
   overflow: hidden;
