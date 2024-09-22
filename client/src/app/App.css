@@ -1,45 +1,140 @@
+body {
+  background: url("https://primamediamts.servicecdn.ru/f/big/485/484263.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #e0e0e0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 #root {
-  max-width: 1280px;
+  max-width: 100vw;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 8rem 2rem 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-.logo.elbrus:hover {
-  filter: drop-shadow(0 0 2em rgb(103, 49, 251));
+h1,
+h2,
+h3 {
+  color: #ffffff;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav {
+  width: 80vw;
+  background-color: rgba(30, 30, 30, 0.9);
+  padding: 0.5rem;
+  border-radius: 14px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #ffffff;
+  padding: 0.1rem;
+  border-radius: 14px;
 }
 
-.card {
-  padding: 2em;
+.showNameAvatar {
+  display: flex;
+  align-items: center;
 }
 
-.read-the-docs {
-  color: #888;
+.showAvatar {
+  width: 80px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+img {
+  max-width: 800px;
+  border-radius: 8px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+button {
+  background-color: #ff5722;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  /* Отступы между кнопками */
+}
+
+.moviePage {
+  display: flex;
+  flex-wrap: wrap;
+  /* Позволяет карточкам переноситься на другую строку */
+  justify-content: center;
+  /* Центрирует карточки */
+}
+
+.movieCard {
+  width: 200px;
+  /* Ширина карточки фильма */
+  margin: 1rem;
+  /* Отступы между карточками */
+  transition: transform 0.3s;
+  /* Плавный переход для увеличения */
+  overflow: hidden;
+  /* Скрытие части, выходящей за пределы карточки */
+}
+
+.movieCard:hover {
+  transform: scale(1.05);
+  /* Увеличение карточки при наведении */
+}
+
+.movieCard img {
+  width: 100%;
+  /* Изображение заполняет карточку */
+  border-radius: 8px;
+  /* Округление углов изображения */
+  display: block;
+  /* Убирает нижний отступ у изображения */
+}
+
+button:hover {
+  background-color: #e64a19;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+input::placeholder {
+  color: #b0b0b0;
+}
+
+form {
+  margin-top: 1rem;
+}
+
+a {
+  color: #bb86fc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

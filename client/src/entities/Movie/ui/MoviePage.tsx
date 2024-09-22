@@ -3,7 +3,7 @@ import { Movie } from '../types/movie';
 import { AppContext } from '../../../app/provider/AppContext';
 import axiosInstance from '../../../services/axiosInstance';
 import MovieItem from './MovieItem';
-
+import MovieAdd from './MovieAdd';
 
 
 const MoviePage = (): JSX.Element => {
@@ -25,17 +25,18 @@ const MoviePage = (): JSX.Element => {
   }, [])
 
   return (
-    <div className='moviePage'>
         <div>
             <h1>Фильмы</h1>
-        </div>
+
+    <div className='moviePage'>
         {movies && (
-          <div>
+          <div className='movieCards'>
             {movies.map((movie) => (
               <MovieItem key={movie.id} movie={movie} setMovies={setMovies} />
             ))}
           </div>
         )}
+        </div>
     </div>
   );
 };

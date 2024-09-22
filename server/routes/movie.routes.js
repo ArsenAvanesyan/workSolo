@@ -24,15 +24,15 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", verifyAccessToken, async (req, res) => {
   try {
-    const { title, info, img } = req.body;
+    const { name, info, img } = req.body;
     const { id } = res.locals.user;
-    if (title.trim() === "" || info.trim() === "" || img.trim() === "") {
+    if (name.trim() === "" || info.trim() === "" || img.trim() === "") {
       res.status(400).json({ message: "Заполните все поля" });
       return;
     }
     const movie = await MovieService.createMovie({
       userId: id,
-      title,
+      name,
       info,
       img,
     });
@@ -49,13 +49,13 @@ router.put("/:id", verifyAccessToken, async (req, res) => {
   try {
     const { id: userId } = res.locals.user;
     const { id } = req.params;
-    const { title, info, img } = req.body;
-    if (title.trim() === "" || info.trim() === "" || img.trim() === "") {
+    const { name, info, img } = req.body;
+    if (name.trim() === "" || info.trim() === "" || img.trim() === "") {
       res.status(400).json({ message: "Заполните все поля" });
       return;
     }
     const movie = await MovieService.updateMovie(id, userId, {
-      title,
+      name,
       info,
       img,
     });

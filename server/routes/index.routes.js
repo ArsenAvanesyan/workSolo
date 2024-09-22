@@ -7,7 +7,7 @@ const movieRouter = require("./movie.routes")
 
 router.use("/auth", authRouter);
 router.use("/movie", movieRouter)
-router.use("/token", tokenRouter);
+router.use("/tokens", tokenRouter);
 
 router.use("*", errorRouter);
 

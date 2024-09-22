@@ -36,9 +36,9 @@ function MovieUpdate({movie, setIsUpdating, setMovies}: MovieUpdateProps): JSX.E
             <h3>Изменить Фильм</h3>
         </div>
         <form onSubmit={onHandleUpdate}>
-            <input placeholder='Название' type='text' onChange={(e) => setName(e.target.value)} />
-            <input placeholder='Обложка' type='text' onChange={(e) => setImg(e.target.value)} />
-            <input placeholder='Информация' type='text' onChange={(e) => setInfo(e.target.value)} />
+            <input placeholder='Название' value={name} type='text' onChange={(e) => setName(e.target.value)} />
+            <input placeholder='Обложка' value={img} type='url' onChange={(e) => setImg(e.target.value)} />
+            <input placeholder='Информация' value={info} type='text' onChange={(e) => setInfo(e.target.value)} />
             <button type='submit'>Изменить</button>
         </form>
     </div>

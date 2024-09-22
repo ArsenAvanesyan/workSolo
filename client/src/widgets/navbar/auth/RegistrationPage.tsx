@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../app/provider/AppContext';
-import axiosInstance, {  setAccessToken } from '../../../services/axiosInstance';
+import axiosInstance, { setAccessToken } from '../../../services/axiosInstance';
+import axios, { AxiosError } from 'axios';
 
-
- function RegistrationPage():JSX.Element {
+function RegistrationPage(): JSX.Element {
   const { setUser } = useContext(AppContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -17,9 +17,8 @@ import axiosInstance, {  setAccessToken } from '../../../services/axiosInstance'
   const [error, setError] = useState<string | null>(null);
   const [hidden, setHidden] = useState<boolean>(false);
 
-  const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>):Promise<void> => {
-    console.log(name,email,img,password)
-
+  const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    
     e.preventDefault();
     if (password === check) {
       try {
@@ -29,15 +28,19 @@ import axiosInstance, {  setAccessToken } from '../../../services/axiosInstance'
           img,
           password,
         });
-        console.log(response)
+        console.log(response);
         if (response.status === 201) {
           console.log(response.data);
           setUser(response.data.user);
           setAccessToken(response.data.accessToken);
-          navigate("/")
+          navigate('/');
         }
-      } catch ({ response }) {
-        console.log(response.data.message);
+      } catch (error) {
+        const axiosError = error as AxiosError;
+        if (axios.isAxiosError(axiosError)) {
+          throw new Error(axiosError.message);
+        }
+        throw new Error('Some error');
       }
     } else {
       setError('Пароли не совпадают');
@@ -46,41 +49,45 @@ import axiosInstance, {  setAccessToken } from '../../../services/axiosInstance'
 
   return (
     <div>
-      <h1>Registration Page</h1>
+      <h1>Зарегистрироваться</h1>
       {error && <span>{error}</span>}
       <form onSubmit={onHandleSubmit}>
         <input
-          type='text'
+          placeholder="Имя"
+          type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
-          type='email'
+          placeholder="Почта"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          type='text'
-          value={img}
-          onChange={(e) => setImg(e.target.value)}
+        <input placeholder="Фото" type="url" value={img} onChange={(e) => setImg(e.target.value)} 
         />
         <input
+          placeholder="Пароль"
           type={hidden ? 'text' : 'password'}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type='button' onClick={() => setHidden((prev) => !prev)}>
-          look
+        <button type="button" onClick={() => setHidden((prev) => !prev)}>
+          👁️
         </button>
         <input
-          type='password'
+          placeholder="Подтвердите пароль"
+          type="password"
           value={check}
           onChange={(e) => setCheck(e.target.value)}
         />
-        <button type='submit'>registration</button>
+        <button type="submit" >Зарегистрироваться</button>
+        {/* <div>
+          <NavLink to="/authorization">Авторизоваться</NavLink>
+        </div> */}
       </form>
     </div>
   );
-};
+}
 
 export default RegistrationPage;

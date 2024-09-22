@@ -1,4 +1,4 @@
-const { where } = require("sequelize");
+// const { where } = require("sequelize");
 const { User } = require("../db/models");
 
 class UserServices {
@@ -10,10 +10,10 @@ class UserServices {
     return user ? user.get() : null;
   };
 
-  static createUser = async ({ name, email, password }) => {
+  static createUser = async ({ name, email, password, img }) => {
     let user = await User.findOne({ where: { email } });
     if (!user) {
-      user = User.create({ name, email, password });
+      user = User.create({ name, email, password, img });
       return user;
     }
     return null;

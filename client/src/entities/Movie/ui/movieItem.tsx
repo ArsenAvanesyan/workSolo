@@ -12,7 +12,7 @@ type MovieItemProps = {
 }
 
 const MovieItem: React.FC<MovieItemProps> = ({movie}: MovieItemProps): JSX.Element => {
-  
+
   const { user, setMovies } = useContext(AppContext)
   const [isUpdating, setIsUpdating] = useState<boolean>(false)
 
@@ -32,9 +32,8 @@ const MovieItem: React.FC<MovieItemProps> = ({movie}: MovieItemProps): JSX.Eleme
     <div className="movieItem">
       <h2>{movie.name}</h2>
       <Link to={`/movie/${movie.id}`}>
-        <img src={movie.img} alt={movie.name} />
+        <img className="movieCard" src={movie.img} alt={movie.name} />
       </Link>
-      <h3>{movie.info}</h3>
       {user && (
         <>
           {user.id === movie.userId && (
