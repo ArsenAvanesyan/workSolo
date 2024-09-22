@@ -2,15 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import { Movie } from '../types/movie';
 import { AppContext } from '../../../app/provider/AppContext';
 import axiosInstance from '../../../services/axiosInstance';
-import MovieItem from './movieItem';
+import MovieItem from './MovieItem';
 
-type MoviePageProps = {
-    movies: Movie[]
-    setMovies: React.Dispatch<React.SetStateAction<Movie[]>>
-}
 
-const MoviePage = ({movies, setMovies}: MoviePageProps): JSX.Element => {
-  const {user} = useContext(AppContext)
+
+const MoviePage = (): JSX.Element => {
+  const {user, setMovies, movies} = useContext(AppContext)
   const getAllMovie = async () => {
     try {
       const response = await axiosInstance.get<{ movie: Movie[] }>("/movie")
@@ -34,7 +31,7 @@ const MoviePage = ({movies, setMovies}: MoviePageProps): JSX.Element => {
         </div>
         {movies && (
           <div>
-            {movies.map((m) => (
+            {movies.map((movie) => (
               <MovieItem key={movie.id} movie={movie} setMovies={setMovies} />
             ))}
           </div>

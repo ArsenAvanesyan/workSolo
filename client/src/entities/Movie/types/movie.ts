@@ -7,12 +7,12 @@ export type Movie = {
 }
 
 export type MovieWithoutId = Omit<Movie, 'id'>
-export type MovieWithoutIdSecond = Omit<MovieWithoutId, 'userId'>
+// export type MovieWithoutIdSecond = Omit<MovieWithoutId, 'userId'>
 
 
 export type MovieResponse = {
     message: string;
-    movie: MovieWithoutIdSecond[]
+    movie: []
 }
 
 export type MovieId = Movie['id']

@@ -4,7 +4,7 @@ class MovieService {
   static getAllMovies = async () => (await Movie.findAll()).map((m) => m.get());
 
   static getMovieByPk = async (id) => {
-    const movie = await Movie.findByPk(id);
+    const movie = await Movie.findByPk({where: {id}});
     return movie ? movie.get() : null;
   };
 

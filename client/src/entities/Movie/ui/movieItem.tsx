@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react';
 // import './MovieItem.css';
 import { Movie } from '../types/movie';
 import { AppContext } from '../../../app/provider/AppContext';
-import axios, { AxiosResponse } from 'axios';
 import axiosInstance from '../../../services/axiosInstance';
+import MovieUpdate from './MovieUpdate';
+import { Link } from 'react-router-dom';
 
 type MovieItemProps = {
   movie: Movie;
@@ -11,8 +12,10 @@ type MovieItemProps = {
 }
 
 const MovieItem: React.FC<MovieItemProps> = ({movie}: MovieItemProps): JSX.Element => {
-  const { user } = useContext(AppContext)
+  
+  const { user, setMovies } = useContext(AppContext)
   const [isUpdating, setIsUpdating] = useState<boolean>(false)
+
   const onHandleDelete = async () => {
     try {
       const response = await axiosInstance.delete(`/movie/${movie.id}`)
@@ -26,8 +29,25 @@ const MovieItem: React.FC<MovieItemProps> = ({movie}: MovieItemProps): JSX.Eleme
   }
 
   return (
-    <div className='movieItem'>
-      
+    <div className="movieItem">
+      <h2>{movie.name}</h2>
+      <Link to={`/movie/${movie.id}`}>
+        <img src={movie.img} alt={movie.name} />
+      </Link>
+      <h3>{movie.info}</h3>
+      {user && (
+        <>
+          {user.id === movie.userId && (
+            <div>
+              <button onClick={onHandleDelete}>Удалить</button>
+              <button onClick={() => setIsUpdating(!isUpdating)}>Обновить</button>
+            </div>
+          )}
+        </>
+      )}
+      {isUpdating && (
+        <MovieUpdate movie={movie} setMovies={setMovies} setIsUpdating={setIsUpdating} />
+      )}
     </div>
   );
 };

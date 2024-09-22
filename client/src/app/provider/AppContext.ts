@@ -7,15 +7,15 @@ import { Movie } from "../../entities/Movie/types/movie";
 type initStateUser = {
   user: User | undefined
   setUser: Dispatch<SetStateAction<User|undefined>>
-  movies: Movie | null
-  setMovies: Dispatch<SetStateAction<Movie|null>>
+  movies: Movie[]
+  setMovies: Dispatch<SetStateAction<Movie[]>>
 }
 
 // Начальное состояние
 export const initState: initStateUser = {
   user: undefined,
   setUser: () => {},
-  movies: null,
+  movies: [],
   setMovies: () => {},
 };
 

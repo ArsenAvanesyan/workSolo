@@ -14,6 +14,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id)
     const movie = await MovieService.getMovieByPk(id);
     res.status(200).json({ message: "success", movie });
   } catch ({ message }) {
