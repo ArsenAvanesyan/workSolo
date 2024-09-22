@@ -47,7 +47,8 @@ nav {
 }
 
 .showAvatar {
-  width: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin-right: 0.5rem;
 }
@@ -80,34 +81,25 @@ button {
 .moviePage {
   display: flex;
   flex-wrap: wrap;
-  /* Позволяет карточкам переноситься на другую строку */
+  flex-direction: row;
   justify-content: center;
-  /* Центрирует карточки */
 }
 
 .movieCard {
   width: 200px;
-  /* Ширина карточки фильма */
   margin: 1rem;
-  /* Отступы между карточками */
   transition: transform 0.3s;
-  /* Плавный переход для увеличения */
   overflow: hidden;
-  /* Скрытие части, выходящей за пределы карточки */
 }
 
 .movieCard:hover {
   transform: scale(1.05);
-  /* Увеличение карточки при наведении */
 }
 
 .movieCard img {
   width: 100%;
-  /* Изображение заполняет карточку */
   border-radius: 8px;
-  /* Округление углов изображения */
   display: block;
-  /* Убирает нижний отступ у изображения */
 }
 
 button:hover {
@@ -131,7 +123,7 @@ form {
 }
 
 a {
-  color: #bb86fc;
+  color: #ffffff;
   text-decoration: none;
 }
 

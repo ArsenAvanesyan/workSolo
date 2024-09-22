@@ -6,9 +6,16 @@ function MainPage(): JSX.Element {
 
   return (
     <div className="MainPage">
-      {user && (
-        <h1>Привет, {user.name}</h1>
-      )}
+      {user && <h1>Привет, {user.name}</h1>}
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <img
+        src="https://avatars.mds.yandex.net/i?id=3ac9389bf5d4b28f85136e2c9fa36910_l-4307487-images-thumbs&n=13"
+        alt="Welcome"
+      />
     </div>
   );
 }

@@ -19,11 +19,11 @@ const UserMovies = (): JSX.Element => {
   return (
     <div>
       <h2>Мои Фильмы</h2>
+      {movies && <MovieAdd setMovies={setMovies} />}
       {userMovies.length === 0 ? (
         <p>У вас нет добавленных фильмов.</p>
       ) : (
         <ul>
-          {movies && <MovieAdd setMovies={setMovies} />}
           {userMovies &&
             userMovies.map((movie) => (
               <MovieItem movie={movie} setMovies={setMovies} />
