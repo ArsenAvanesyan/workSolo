@@ -7,7 +7,7 @@ router.get("/refresh", verifyRefreshToken, async (req, res) => {
   try {
     const { user } = res.locals;
     const { accessToken, refreshToken } = generateTokens({ user });
-
+    
     res
       .status(200)
       .cookie("refreshToken", refreshToken, {

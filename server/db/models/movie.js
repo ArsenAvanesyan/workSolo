@@ -3,17 +3,19 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Favorite extends Model {
+  class Movie extends Model {
     static associate({User}) {
       this.belongsTo(User, {foreignKey: 'userId'})
     }
   }
-  Favorite.init({
+  Movie.init({
     userId: DataTypes.INTEGER,
-    kinoId: DataTypes.INTEGER
+    name: DataTypes.TEXT,
+    info: DataTypes.TEXT,
+    img: DataTypes.TEXT
   }, {
     sequelize,
-    modelName: 'Favorite',
+    modelName: 'Movie',
   });
-  return Favorite;
+  return Movie;
 };
