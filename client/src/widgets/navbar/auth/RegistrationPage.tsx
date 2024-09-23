@@ -82,9 +82,9 @@ function RegistrationPage(): JSX.Element {
           onChange={(e) => setCheck(e.target.value)}
         />
         <button type="submit" >Зарегистрироваться</button>
-        {/* <div>
+        <div>
           <NavLink to="/authorization">Авторизоваться</NavLink>
-        </div> */}
+        </div>
       </form>
     </div>
   );
